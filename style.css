@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    background-image: url(https://www.publicdomainpictures.net/pictures/210000/nahled/black-glistening-background.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+}
+
+#game-container {
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    max-width: 800px;
+    height: 800px;
+    width: 100%;
+    text-align: center;
+    border: 2px groove;
+    opacity: .5;
+}
+
+#choice-container {
+
+}
