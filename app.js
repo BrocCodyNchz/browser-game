@@ -2,6 +2,7 @@ const labTitle = document.getElementById(`lab-title`);
 const storyText = document.getElementById(`story-text`);
 const choiceContainer = document.getElementById(`choice-container`);
 
+
 let currentLab = 1;
 const totalLabs = 5;
 
@@ -45,12 +46,12 @@ function gamePlay(game) {
     storyText.textContent = story[game];
     choiceContainer.innerHTML = ``;
     
+    if (game === `safe` || game === `riskySuccess`) {
+        currentLab++;
+    }
     if (currentLab > totalLabs) {
         endGame(`Congratulations`);
         return;
-    }
-    if (game === `safe` || game === `riskySuccess`) {
-        currentLab++;
     }
 }
 labTitle.textContent = `Lab ${currentLab}`;
@@ -62,10 +63,24 @@ for (let i = 0; i < choices.length; i++) {
     button.classList.add(`choice-button`);
 
     const icon = document.createElement(`img`);
-    
+    icon.src = choice.icon;
+    button.appendChild(icon);
+    const buttonText = document.createTextNode(choice.text);
+    button.appendChild(buttonText);
+
+    button.setAttrubute(`data-path`, choice.path);
+    choiceContainer.appendChild(button);
+}
 }
 
 function endGame(outcome) {
+    choiceContainer.innerHTML = ``;
+    if (outcome === `congratulations`) {
+        labTitle.textContent = `You passed the course and were able to get a job quickly!`
+    } else {
+        labTitle.textContent = `You wasted your money and now everyone hates you.`
+    }
 
 }
-}
+choiceContainer.addEventListener(`click`, handleChoice);
+gamePlay(`start`);
