@@ -51,8 +51,18 @@ function gamePlay(game) {
     }
     if (game === `safe` || game === `riskySuccess`) {
         currentLab++;
-
     }
+}
+labTitle.textContent = `Lab ${currentLab}`;
+storyText.textContent = story[game];
+
+for (let i = 0; i < choices.length; i++) {
+    const choice = choices [i];
+    const button = document.createElement(`button`);
+    button.classList.add(`choice-button`);
+
+    const icon = document.createElement(`img`);
+    
 }
 
 function endGame(outcome) {
