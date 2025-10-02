@@ -2,7 +2,7 @@ const labTitle = document.getElementById(`lab-title`);
 const storyText = document.getElementById(`story-text`);
 const choiceContainer = document.getElementById(`choice-container`);
 
-
+//Vaiables
 let currentLab = 1;
 const totalLabs = 5;
 
@@ -15,6 +15,7 @@ const choices = [
 
 //Story lines that will be reused.
 const story = {
+    start: `Welcome to General Assembly!`,
     safe: `Matt: "Coding is hard so it is going to be a bit rough. Great work!"`,
     riskySuccess: `You got by this time.`,
     riskyFail: `Busted! Matt and Keith ask about the code and you try to explain it."`,
@@ -23,6 +24,19 @@ const story = {
     gameOver: `Great job, you were kicked out of the class. Next time do the work and put in the effort.`,
 }
 //Set event to check the choice made by user.
+
+function gamePlay(game) {
+    storyText.textContent = story[game];
+    choiceContainer.innerHTML = ``;
+    
+    if (game === `safe` || game === `riskySuccess`) {
+        currentLab++;
+    }
+    if (currentLab > totalLabs) {
+        endGame(`Congratulations`);
+        return;
+    }
+}
 function handleChoice(event) {
     const targetButton = event.target.closest(`.choice-button`);
     //used MDN to find a way to pull from path using dataset
@@ -42,20 +56,8 @@ function handleChoice(event) {
     }
 }
 
-function gamePlay(game) {
-    storyText.textContent = story[game];
-    choiceContainer.innerHTML = ``;
-    
-    if (game === `safe` || game === `riskySuccess`) {
-        currentLab++;
-    }
-    if (currentLab > totalLabs) {
-        endGame(`Congratulations`);
-        return;
-    }
-}
 labTitle.textContent = `Lab ${currentLab}`;
-storyText.textContent = story[game];
+storyText.textContent = story[game] || story.start;
 
 for (let i = 0; i < choices.length; i++) {
     const choice = choices [i];
@@ -68,7 +70,7 @@ for (let i = 0; i < choices.length; i++) {
     const buttonText = document.createTextNode(choice.text);
     button.appendChild(buttonText);
 
-    button.setAttrubute(`data-path`, choice.path);
+    button.setAttribute(`data-path`, choice.path);
     choiceContainer.appendChild(button);
 }
 }
@@ -80,7 +82,7 @@ function endGame(outcome) {
     } else {
         labTitle.textContent = `You wasted your money and now everyone hates you.`
     }
-
 }
 choiceContainer.addEventListener(`click`, handleChoice);
+
 gamePlay(`start`);
