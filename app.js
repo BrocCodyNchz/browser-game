@@ -1,6 +1,6 @@
 const labTitle = document.getElementById(`lab-title`);
 const storyText = document.getElementById(`story-text`);
-const choiceContainer = document.getElementById(`choice-container`);
+const gameContainer = document.getElementById(`game-container`);
 
 //Vaiables
 let currentLab = 1;
@@ -8,9 +8,9 @@ const totalLabs = 5;
 
 //Prompts for the the user to choice how they will do each lab.
 const choices = [
-    {text: `Code it yourself`, path:`safe`, icon:`url here`},
-    {text: `Modify someone's example`, path: `risky`, icon:`url here`},
-    {text: `Use ChatGPT to generate the code`, path: `chatGpt`, icon:`https://imgs.search.brave.com/zFJCleXHWZpW9U_0wmCwAO0N5USyQOKZTYSaDsyHOv4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4z/ZC5pY29uc2NvdXQu/Y29tLzNkL3ByZW1p/dW0vdGh1bWIvY2hh/dC1ncHQtM2QtaWNv/bi1wbmctZG93bmxv/YWQtODcxNTM1NC5w/bmc`}
+    {text: `Code it yourself`, path:`safe`},
+    {text: `Modify someone's example`, path: `risky`},
+    {text: `Use ChatGPT to generate the code`, path: `chatGpt`},
 ];
 
 //Story lines that will be reused.
@@ -23,11 +23,10 @@ const story = {
     congratulations: `Matt: "Awesome job, I present to you your worthless certificate."`,
     gameOver: `Great job, you were kicked out of the class. Next time do the work and put in the effort.`,
 }
-//Set event to check the choice made by user.
 
 function gamePlay(game) {
     storyText.textContent = story[game];
-    choiceContainer.innerHTML = ``;
+    gameContainer.innerHTML = ``;
     
     if (game === `safe` || game === `riskySuccess`) {
         currentLab++;
@@ -36,7 +35,10 @@ function gamePlay(game) {
         endGame(`Congratulations`);
         return;
     }
+labTitle.textContent = `Lab ${currentLab}`;
 }
+
+//Set event to check the choice made by user.
 function handleChoice(event) {
     const targetButton = event.target.closest(`.choice-button`);
     //used MDN to find a way to pull from path using dataset
@@ -71,18 +73,20 @@ for (let i = 0; i < choices.length; i++) {
     button.appendChild(buttonText);
 
     button.setAttribute(`data-path`, choice.path);
-    choiceContainer.appendChild(button);
+    gameContainer.appendChild(button);
 }
 }
 
 function endGame(outcome) {
-    choiceContainer.innerHTML = ``;
+    gameContainer.innerHTML = ``;
     if (outcome === `congratulations`) {
         labTitle.textContent = `You passed the course and were able to get a job quickly!`
     } else {
         labTitle.textContent = `You wasted your money and now everyone hates you.`
     }
 }
-choiceContainer.addEventListener(`click`, handleChoice);
+gameContainer.addEventListener(`click`, handleChoice);
 
-gamePlay(`start`);
+window.onload = () => {
+    gamePlay(`start`);
+};
