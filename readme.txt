@@ -14,7 +14,7 @@ Ricky: Contributed ideas and feedback during development to shape the game's dir
 
 Development Process
 
-The original concept was an interactive game guiding players through coding labs with three distinct choices: write original code, copy existing code, or use AI-generated code. However, the team, particularly Cody and the narrator, overcomplicated the initial codebase, leading to functionality issues. After Ashley's suggestion to shift button generation from JavaScript to static HTML, the team resolved key blockers, improving the game's stability.
+The original concept was an interactive game guiding players through coding labs with three distinct choices: write original code, copy existing code, or use AI-generated code. However, the team, particularly myself, Cody, overcomplicated the initial codebase, leading to functionality issues. After Ashley's suggestion to shift button generation from JavaScript to static HTML, the team resolved key blockers, improving the game's stability.
 
 Final Outcome
 
