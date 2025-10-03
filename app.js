@@ -14,7 +14,7 @@ const storyOutcome = {
     chatGpt: `🛑 Expelled`,
     congratulations: `🏆 Congratulations`,
     start: `Welcome to General Assembly!`,
-    gameOver: `Game Over! You were caught and now you have been expelled.`,
+    gameOver: `GAME OVER you have been expelled for plagiarism`,
 };
 
 //Stories to be used for each lab
@@ -123,11 +123,11 @@ function endGame(outcomeKey) {
 
     if (outcomeKey === `chatGpt`) {
         storyText.textContent = storyOutcome.chatGpt;
-        labTitle.textContent = `GAME OVER`;
+        labTitle.textContent = `GAME OVER you have been expelled for plagiarism`;
     }
 
     else if (outcomeKey === `riskyFail`) {
-        labTitle.textContent = `GAME OVER`;
+        labTitle.textContent = `GAME OVER you have been expelled for plagiarism`;
     }
 
     else if (outcomeKey === `congratulations`) {
